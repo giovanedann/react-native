@@ -8,6 +8,7 @@ import {
   View,
 } from "react-native";
 import GoalItem from "./components/GoalItem";
+import GoalInput from "./components/GoalInput";
 
 type Goal = {
   id: string;
@@ -15,30 +16,16 @@ type Goal = {
 };
 
 export default function App() {
-  const [goal, setGoal] = useState<string>("");
   const [goalsList, setGoalsList] = useState<Goal[]>([]);
 
-  function handleInputChange(text: string) {
-    setGoal(text);
-  }
-
-  function handleAddGoalPress() {
+  function handleAddGoalPress(goal: string) {
     const newGoal = { id: Math.random().toString(), text: goal };
     setGoalsList((previousGoals) => [...previousGoals, newGoal]);
-    setGoal("");
   }
 
   return (
     <View style={styles.container}>
-      <View style={styles.inputContainer}>
-        <TextInput
-          style={styles.textInput}
-          value={goal}
-          placeholder="Enter a goal!"
-          onChangeText={handleInputChange}
-        />
-        <Button title="Add goal" onPress={handleAddGoalPress} />
-      </View>
+      <GoalInput onAddGoalPress={handleAddGoalPress} />
 
       <Text style={styles.title}>My goals</Text>
 
@@ -47,7 +34,7 @@ export default function App() {
           data={goalsList}
           renderItem={(goal) => <GoalItem title={goal.item.text} />}
           keyExtractor={(item) => item.id}
-        ></FlatList>
+        />
       </View>
     </View>
   );
