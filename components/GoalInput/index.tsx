@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { Button, StyleSheet, TextInput, View } from "react-native";
+import { Button, TextInput, View } from "react-native";
+import { styles } from "./styles";
 
 type GoalInputProps = {
   onAddGoalPress: (text: string) => void;
@@ -25,22 +26,3 @@ export default function GoalInput({ onAddGoalPress }: GoalInputProps) {
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  inputContainer: {
-    flex: 1,
-    flexDirection: "row",
-    justifyContent: "center",
-    alignItems: "center",
-    gap: 8,
-    marginBottom: 8,
-  },
-
-  textInput: {
-    borderWidth: 1,
-    borderColor: "#ccc",
-    width: "80%",
-    paddingHorizontal: 8,
-    paddingVertical: 4,
-  },
-});

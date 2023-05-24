@@ -1,4 +1,5 @@
-import { View, Text, StyleSheet, Pressable } from "react-native";
+import { View, Text, Pressable } from "react-native";
+import { styles } from "./styles";
 
 type GoalItemProps = {
   title: string;
@@ -14,16 +15,3 @@ export default function GoalItem({ title, handlePress }: GoalItemProps) {
     </Pressable>
   );
 }
-
-const styles = StyleSheet.create({
-  goalItemContainer: {
-    margin: 8,
-    padding: 8,
-    borderRadius: 6,
-    backgroundColor: "#5e0acc",
-  },
-
-  goalItemText: {
-    color: "#fff",
-  },
-});
