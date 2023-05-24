@@ -1,23 +1,29 @@
 import { useState } from "react";
 import {
   Button,
-  ScrollView,
+  FlatList,
   StyleSheet,
   Text,
   TextInput,
   View,
 } from "react-native";
 
+type Goal = {
+  id: string;
+  text: string;
+};
+
 export default function App() {
   const [goal, setGoal] = useState<string>("");
-  const [goalsList, setGoalsList] = useState<string[]>([]);
+  const [goalsList, setGoalsList] = useState<Goal[]>([]);
 
   function handleInputChange(text: string) {
     setGoal(text);
   }
 
   function handleAddGoalPress() {
-    setGoalsList((previousGoals) => [...previousGoals, goal]);
+    const newGoal = { id: Math.random().toString(), text: goal };
+    setGoalsList((previousGoals) => [...previousGoals, newGoal]);
     setGoal("");
   }
 
@@ -36,13 +42,15 @@ export default function App() {
       <Text style={styles.title}>My goals</Text>
 
       <View style={styles.goalsList}>
-        <ScrollView>
-          {goalsList.map((goal) => (
-            <View style={styles.goalItemContainer} key={goal}>
-              <Text style={styles.goalItemText}>{goal}</Text>
+        <FlatList
+          data={goalsList}
+          renderItem={(goal) => (
+            <View style={styles.goalItemContainer}>
+              <Text style={styles.goalItemText}>{goal.item.text}</Text>
             </View>
-          ))}
-        </ScrollView>
+          )}
+          keyExtractor={(item) => item.id}
+        ></FlatList>
       </View>
     </View>
   );
