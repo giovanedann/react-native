@@ -8,10 +8,14 @@ type GoalItemProps = {
 
 export default function GoalItem({ title, handlePress }: GoalItemProps) {
   return (
-    <Pressable onPress={handlePress}>
-      <View style={styles.goalItemContainer}>
+    <View style={styles.goalItemContainer}>
+      <Pressable
+        onPress={handlePress}
+        android_ripple={{ color: "#370679" }}
+        style={({ pressed }) => pressed && styles.goalItemTextPressed}
+      >
         <Text style={styles.goalItemText}>{title}</Text>
-      </View>
-    </Pressable>
+      </Pressable>
+    </View>
   );
 }
