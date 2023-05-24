@@ -1,13 +1,5 @@
-import { useEffect, useState } from "react";
-import {
-  Button,
-  NativeSyntheticEvent,
-  StyleSheet,
-  Text,
-  TextInput,
-  TextInputChangeEventData,
-  View,
-} from "react-native";
+import { useState } from "react";
+import { Button, StyleSheet, Text, TextInput, View } from "react-native";
 
 export default function App() {
   const [goal, setGoal] = useState<string>("");
@@ -36,6 +28,12 @@ export default function App() {
 
       <View style={styles.goalsList}>
         <Text>List of goals</Text>
+
+        {goalsList.map((goal) => (
+          <View style={styles.goalItemContainer} key={goal}>
+            <Text style={styles.goalItemText}>{goal}</Text>
+          </View>
+        ))}
       </View>
     </View>
   );
@@ -69,5 +67,16 @@ const styles = StyleSheet.create({
 
   goalsList: {
     flex: 4,
+  },
+
+  goalItemContainer: {
+    margin: 8,
+    padding: 8,
+    borderRadius: 6,
+    backgroundColor: "#5e0acc",
+  },
+
+  goalItemText: {
+    color: "#fff",
   },
 });
