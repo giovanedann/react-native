@@ -1,5 +1,12 @@
 import { useState } from "react";
-import { Button, StyleSheet, Text, TextInput, View } from "react-native";
+import {
+  Button,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TextInput,
+  View,
+} from "react-native";
 
 export default function App() {
   const [goal, setGoal] = useState<string>("");
@@ -26,14 +33,16 @@ export default function App() {
         <Button title="Add goal" onPress={handleAddGoalPress} />
       </View>
 
-      <View style={styles.goalsList}>
-        <Text>List of goals</Text>
+      <Text style={styles.title}>My goals</Text>
 
-        {goalsList.map((goal) => (
-          <View style={styles.goalItemContainer} key={goal}>
-            <Text style={styles.goalItemText}>{goal}</Text>
-          </View>
-        ))}
+      <View style={styles.goalsList}>
+        <ScrollView>
+          {goalsList.map((goal) => (
+            <View style={styles.goalItemContainer} key={goal}>
+              <Text style={styles.goalItemText}>{goal}</Text>
+            </View>
+          ))}
+        </ScrollView>
       </View>
     </View>
   );
@@ -50,11 +59,17 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: "row",
     justifyContent: "center",
-    gap: 8,
     alignItems: "center",
+    gap: 8,
+    marginBottom: 8,
+  },
+
+  title: {
+    width: "100%",
+    textAlign: "center",
+    fontSize: 24,
     marginBottom: 24,
-    borderBottomWidth: 1,
-    borderBottomColor: "#ccc",
+    fontWeight: "bold",
   },
 
   textInput: {
@@ -62,11 +77,11 @@ const styles = StyleSheet.create({
     borderColor: "#ccc",
     width: "80%",
     paddingHorizontal: 8,
-    paddingVertical: 2,
+    paddingVertical: 4,
   },
 
   goalsList: {
-    flex: 4,
+    flex: 5,
   },
 
   goalItemContainer: {
