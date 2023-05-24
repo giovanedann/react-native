@@ -23,6 +23,12 @@ export default function App() {
     setGoalsList((previousGoals) => [...previousGoals, newGoal]);
   }
 
+  function handleRemoveGoal(id: string) {
+    setGoalsList((previousGoals) =>
+      previousGoals.filter((goal) => goal.id !== id)
+    );
+  }
+
   return (
     <View style={styles.container}>
       <GoalInput onAddGoalPress={handleAddGoalPress} />
@@ -32,7 +38,12 @@ export default function App() {
       <View style={styles.goalsList}>
         <FlatList
           data={goalsList}
-          renderItem={(goal) => <GoalItem title={goal.item.text} />}
+          renderItem={(goal) => (
+            <GoalItem
+              title={goal.item.text}
+              handlePress={() => handleRemoveGoal(goal.item.id)}
+            />
+          )}
           keyExtractor={(item) => item.id}
         />
       </View>

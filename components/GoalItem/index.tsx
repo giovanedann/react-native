@@ -1,14 +1,17 @@
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, Pressable } from "react-native";
 
 type GoalItemProps = {
   title: string;
+  handlePress: () => void;
 };
 
-export default function GoalItem({ title }: GoalItemProps) {
+export default function GoalItem({ title, handlePress }: GoalItemProps) {
   return (
-    <View style={styles.goalItemContainer}>
-      <Text style={styles.goalItemText}>{title}</Text>
-    </View>
+    <Pressable onPress={handlePress}>
+      <View style={styles.goalItemContainer}>
+        <Text style={styles.goalItemText}>{title}</Text>
+      </View>
+    </Pressable>
   );
 }
 
