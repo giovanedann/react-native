@@ -7,6 +7,7 @@ import {
   TextInput,
   View,
 } from "react-native";
+import GoalItem from "./components/GoalItem";
 
 type Goal = {
   id: string;
@@ -44,11 +45,7 @@ export default function App() {
       <View style={styles.goalsList}>
         <FlatList
           data={goalsList}
-          renderItem={(goal) => (
-            <View style={styles.goalItemContainer}>
-              <Text style={styles.goalItemText}>{goal.item.text}</Text>
-            </View>
-          )}
+          renderItem={(goal) => <GoalItem title={goal.item.text} />}
           keyExtractor={(item) => item.id}
         ></FlatList>
       </View>
@@ -90,16 +87,5 @@ const styles = StyleSheet.create({
 
   goalsList: {
     flex: 5,
-  },
-
-  goalItemContainer: {
-    margin: 8,
-    padding: 8,
-    borderRadius: 6,
-    backgroundColor: "#5e0acc",
-  },
-
-  goalItemText: {
-    color: "#fff",
   },
 });
