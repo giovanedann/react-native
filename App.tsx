@@ -11,13 +11,15 @@ import {
 
 export default function App() {
   const [goal, setGoal] = useState<string>("");
+  const [goalsList, setGoalsList] = useState<string[]>([]);
 
   function handleInputChange(text: string) {
     setGoal(text);
   }
 
   function handleAddGoalPress() {
-    console.log("pressed");
+    setGoalsList((previousGoals) => [...previousGoals, goal]);
+    setGoal("");
   }
 
   return (
@@ -25,6 +27,7 @@ export default function App() {
       <View style={styles.inputContainer}>
         <TextInput
           style={styles.textInput}
+          value={goal}
           placeholder="Enter a goal!"
           onChangeText={handleInputChange}
         />
