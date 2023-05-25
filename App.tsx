@@ -1,5 +1,12 @@
 import { useState } from "react";
-import { Button, FlatList, StyleSheet, Text, View } from "react-native";
+import {
+  Button,
+  FlatList,
+  StyleSheet,
+  Text,
+  View,
+  StatusBar,
+} from "react-native";
 import GoalItem from "./components/GoalItem";
 import GoalInput from "./components/GoalInput";
 
@@ -24,38 +31,42 @@ export default function App() {
   }
 
   return (
-    <View style={styles.container}>
-      <View style={styles.addButtonContainer}>
-        <View style={styles.addButton}>
-          <Button
-            title="Add new goal"
-            color="#5e0acc"
-            onPress={() => setIsAddGoalModalOpen(true)}
+    <>
+      <StatusBar barStyle="light-content" backgroundColor="transparent" />
+
+      <View style={styles.container}>
+        <View style={styles.addButtonContainer}>
+          <View style={styles.addButton}>
+            <Button
+              title="Add new goal"
+              color="#5e0acc"
+              onPress={() => setIsAddGoalModalOpen(true)}
+            />
+          </View>
+        </View>
+
+        <GoalInput
+          onAddGoalPress={handleAddGoalPress}
+          onCancelPress={() => setIsAddGoalModalOpen(false)}
+          isOpen={isAddGoalModalOpen}
+        />
+
+        <Text style={styles.title}>My goals</Text>
+
+        <View style={styles.goalsList}>
+          <FlatList
+            data={goalsList}
+            renderItem={(goal) => (
+              <GoalItem
+                title={goal.item.text}
+                handlePress={() => handleRemoveGoal(goal.item.id)}
+              />
+            )}
+            keyExtractor={(item) => item.id}
           />
         </View>
       </View>
-
-      <GoalInput
-        onAddGoalPress={handleAddGoalPress}
-        onCancelPress={() => setIsAddGoalModalOpen(false)}
-        isOpen={isAddGoalModalOpen}
-      />
-
-      <Text style={styles.title}>My goals</Text>
-
-      <View style={styles.goalsList}>
-        <FlatList
-          data={goalsList}
-          renderItem={(goal) => (
-            <GoalItem
-              title={goal.item.text}
-              handlePress={() => handleRemoveGoal(goal.item.id)}
-            />
-          )}
-          keyExtractor={(item) => item.id}
-        />
-      </View>
-    </View>
+    </>
   );
 }
 
