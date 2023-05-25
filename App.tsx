@@ -25,11 +25,15 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      <Button
-        title="Add new goal"
-        color="#5e0acc"
-        onPress={() => setIsAddGoalModalOpen(true)}
-      />
+      <View style={styles.addButtonContainer}>
+        <View style={styles.addButton}>
+          <Button
+            title="Add new goal"
+            color="#5e0acc"
+            onPress={() => setIsAddGoalModalOpen(true)}
+          />
+        </View>
+      </View>
 
       <GoalInput
         onAddGoalPress={handleAddGoalPress}
@@ -67,10 +71,22 @@ const styles = StyleSheet.create({
     textAlign: "center",
     fontSize: 24,
     marginBottom: 24,
+    color: "#fff",
     fontWeight: "bold",
   },
 
   goalsList: {
     flex: 5,
+  },
+
+  addButtonContainer: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+
+  addButton: {
+    width: "90%",
+    backgroundColor: "red",
   },
 });
