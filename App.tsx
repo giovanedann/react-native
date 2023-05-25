@@ -33,6 +33,7 @@ export default function App() {
 
       <GoalInput
         onAddGoalPress={handleAddGoalPress}
+        onCancelPress={() => setIsAddGoalModalOpen(false)}
         isOpen={isAddGoalModalOpen}
       />
 
@@ -61,29 +62,12 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
   },
 
-  inputContainer: {
-    flex: 1,
-    flexDirection: "row",
-    justifyContent: "center",
-    alignItems: "center",
-    gap: 8,
-    marginBottom: 8,
-  },
-
   title: {
     width: "100%",
     textAlign: "center",
     fontSize: 24,
     marginBottom: 24,
     fontWeight: "bold",
-  },
-
-  textInput: {
-    borderWidth: 1,
-    borderColor: "#ccc",
-    width: "80%",
-    paddingHorizontal: 8,
-    paddingVertical: 4,
   },
 
   goalsList: {

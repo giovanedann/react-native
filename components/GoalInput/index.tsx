@@ -4,10 +4,15 @@ import { styles } from "./styles";
 
 type GoalInputProps = {
   onAddGoalPress: (text: string) => void;
+  onCancelPress: () => void;
   isOpen: boolean;
 };
 
-export default function GoalInput({ onAddGoalPress, isOpen }: GoalInputProps) {
+export default function GoalInput({
+  onAddGoalPress,
+  isOpen,
+  onCancelPress,
+}: GoalInputProps) {
   const [goal, setGoal] = useState<string>("");
 
   function handleAddGoal() {
@@ -24,7 +29,15 @@ export default function GoalInput({ onAddGoalPress, isOpen }: GoalInputProps) {
           placeholder="Enter a goal!"
           onChangeText={(text) => setGoal(text)}
         />
-        <Button title="Add goal" onPress={handleAddGoal} />
+
+        <View style={styles.buttonsContainer}>
+          <View style={styles.button}>
+            <Button title="Cancel" onPress={onCancelPress} />
+          </View>
+          <View style={styles.button}>
+            <Button title="Add goal" onPress={handleAddGoal} />
+          </View>
+        </View>
       </View>
     </Modal>
   );
