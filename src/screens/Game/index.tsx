@@ -11,6 +11,7 @@ import GuessedNumber from "../../components/GuessedNumber";
 import Button from "../../components/Button";
 import Card from "../../components/Card";
 import InstructionText from "../../components/InstructionText";
+import GuessRow from "../../components/GuessRow";
 
 type GameProps = {
   userPickedNumber: number;
@@ -113,7 +114,12 @@ export default function Game({
       <View>
         <FlatList
           data={rounds}
-          renderItem={(round) => <Text>{round.item}</Text>}
+          renderItem={(round) => (
+            <GuessRow
+              roundGuess={round.item}
+              roundIndex={rounds.length - round.index}
+            />
+          )}
           keyExtractor={(round) => String(round)}
         />
       </View>
