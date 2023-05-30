@@ -3,6 +3,7 @@ import styles from "./styles";
 import Button from "../../components/Button";
 import { useState } from "react";
 import Title from "../../components/Title";
+import Card from "../../components/Card";
 
 type GameStartProps = {
   onConfirmNumber: (number: number) => void;
@@ -36,7 +37,7 @@ export default function GameStart({ onConfirmNumber }: GameStartProps) {
   return (
     <View style={styles.wrapper}>
       <Title text="Guess my number!" />
-      <View style={styles.inputContainer}>
+      <Card>
         <Text style={styles.instruction}>Enter a number between 1 and 99!</Text>
         <TextInput
           style={styles.textInput}
@@ -56,7 +57,7 @@ export default function GameStart({ onConfirmNumber }: GameStartProps) {
             <Button title="Confirm" onPress={onConfirm} />
           </View>
         </View>
-      </View>
+      </Card>
     </View>
   );
 }
