@@ -1,10 +1,9 @@
 import { StyleSheet } from "react-native";
-import { Colors } from "../../styles/colors";
 
 const styles = StyleSheet.create({
   title: {
     fontSize: 18,
-    fontWeight: "bold",
+    fontFamily: "poppins-bold",
     color: "#fff",
     textAlign: "center",
     borderWidth: 2,

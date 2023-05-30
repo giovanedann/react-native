@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
     height: 50,
     width: 50,
     textAlign: "center",
-    fontWeight: "bold",
+    fontFamily: "poppins-bold",
     fontSize: 32,
     borderBottomColor: Colors.accent500,
     borderBottomWidth: 2,

@@ -1,15 +1,32 @@
 import { StyleSheet, ImageBackground, SafeAreaView } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
-import { useState } from "react";
+import * as SplashScreen from "expo-splash-screen";
+import { useFonts } from "expo-font";
+import { useCallback, useState } from "react";
 
 import GameStart from "./src/screens/GameStart";
 import Game from "./src/screens/Game";
 import { Colors } from "./src/styles/colors";
 import GameOver from "./src/screens/GameOver";
 
+SplashScreen.preventAutoHideAsync();
+
 export default function App() {
   const [pickedNumber, setPickedNumber] = useState<number>(0);
   const [isGameOver, setIsGameOver] = useState<boolean>(true);
+
+  const [fontsLoaded] = useFonts({
+    poppins: require("./assets/fonts/poppins/Poppins-Regular.ttf"),
+    "poppins-bold": require("./assets/fonts/poppins/Poppins-Bold.ttf"),
+  });
+
+  const onLayoutRootView = useCallback(async () => {
+    if (fontsLoaded) {
+      await SplashScreen.hideAsync();
+    }
+  }, [fontsLoaded]);
+
+  if (!fontsLoaded) return null;
 
   function handleConfirmNumber(value: number) {
     setPickedNumber(value);
@@ -24,6 +41,7 @@ export default function App() {
     <LinearGradient
       colors={[Colors.primary550, Colors.accent500]}
       style={styles.root}
+      onLayout={onLayoutRootView}
     >
       <ImageBackground
         source={require("./assets/background.png")}

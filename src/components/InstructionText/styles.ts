@@ -3,6 +3,7 @@ import { Colors } from "../../styles/colors";
 
 const styles = StyleSheet.create({
   instruction: {
+    fontFamily: "poppins",
     color: Colors.accent500,
     fontSize: 20,
     textAlign: "center",
