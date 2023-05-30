@@ -24,6 +24,18 @@ const styles = StyleSheet.create({
     height: 300,
     resizeMode: "cover",
   },
+
+  summary: {
+    fontFamily: "poppins",
+    fontSize: 20,
+    textAlign: "center",
+    marginBottom: 20,
+  },
+
+  summaryHighlight: {
+    fontFamily: "poppins-bold",
+    color: Colors.primary500,
+  },
 });
 
 export default styles;

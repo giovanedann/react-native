@@ -1,6 +1,7 @@
-import { Image, View } from "react-native";
+import { Image, Text, View } from "react-native";
 import Title from "../../components/Title";
 import styles from "./styles";
+import Button from "../../components/Button";
 
 export default function GameOver() {
   return (
@@ -13,6 +14,13 @@ export default function GameOver() {
           style={styles.image}
         />
       </View>
+
+      <Text style={styles.summary}>
+        Opponent needed <Text style={styles.summaryHighlight}>X</Text> rounds to
+        guess the number <Text style={styles.summaryHighlight}>Y</Text>.
+      </Text>
+
+      <Button title="Start new game" onPress={() => {}} />
     </View>
   );
 }
