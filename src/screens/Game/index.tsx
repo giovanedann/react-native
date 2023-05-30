@@ -1,4 +1,4 @@
-import { Alert, Text, View } from "react-native";
+import { Alert, FlatList, Text, View } from "react-native";
 import { useEffect, useState } from "react";
 import Ionicons from "@expo/vector-icons/Ionicons";
 
@@ -15,6 +15,7 @@ import InstructionText from "../../components/InstructionText";
 type GameProps = {
   userPickedNumber: number;
   onComputerRightGuess: () => void;
+  increaseRounds: (number: number) => void;
 };
 
 let minBoundary = 1;
@@ -23,6 +24,7 @@ let maxBoundary = 100;
 export default function Game({
   userPickedNumber,
   onComputerRightGuess,
+  increaseRounds,
 }: GameProps) {
   const initialComputerGuess = generateRandomNumberBetween(
     1,
@@ -32,6 +34,7 @@ export default function Game({
 
   const [currentComputerGuess, setCurrentComputerGuess] =
     useState<number>(initialComputerGuess);
+  const [rounds, setRounds] = useState<number[]>([initialComputerGuess]);
 
   function guessNewNumber(direction: "lower" | "higher") {
     const isUserLying =
@@ -50,16 +53,35 @@ export default function Game({
       minBoundary = currentComputerGuess + 1;
     }
 
-    setCurrentComputerGuess((prev) =>
-      generateRandomNumberBetween(minBoundary, maxBoundary, prev)
-    );
+    setCurrentComputerGuess((prev) => {
+      const newRandomNumber = generateRandomNumberBetween(
+        minBoundary,
+        maxBoundary,
+        prev
+      );
+
+      setRounds((prev) => [newRandomNumber, ...prev]);
+
+      return newRandomNumber;
+    });
   }
 
   useEffect(() => {
     if (userPickedNumber === currentComputerGuess) {
       onComputerRightGuess();
+      increaseRounds(rounds.length);
     }
-  }, [currentComputerGuess, userPickedNumber, onComputerRightGuess]);
+  }, [
+    currentComputerGuess,
+    userPickedNumber,
+    onComputerRightGuess,
+    increaseRounds,
+  ]);
+
+  useEffect(() => {
+    minBoundary = 1;
+    maxBoundary = 100;
+  }, []);
 
   return (
     <View style={styles.container}>
@@ -89,7 +111,11 @@ export default function Game({
       </Card>
 
       <View>
-        <Text>Log rounds</Text>
+        <FlatList
+          data={rounds}
+          renderItem={(round) => <Text>{round.item}</Text>}
+          keyExtractor={(round) => String(round)}
+        />
       </View>
     </View>
   );

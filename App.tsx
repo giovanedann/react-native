@@ -14,6 +14,8 @@ SplashScreen.preventAutoHideAsync();
 export default function App() {
   const [pickedNumber, setPickedNumber] = useState<number>(0);
   const [isGameOver, setIsGameOver] = useState<boolean>(true);
+  const [numberOfRoundsUntilRightGuess, setNumberOfRoundsUntilRightGuess] =
+    useState<number>(0);
 
   const [fontsLoaded] = useFonts({
     poppins: require("./assets/fonts/poppins/Poppins-Regular.ttf"),
@@ -33,8 +35,13 @@ export default function App() {
     setIsGameOver(false);
   }
 
+  function increaseNumberOfRounds(number: number) {
+    setNumberOfRoundsUntilRightGuess(number);
+  }
+
   function finishGame() {
     setIsGameOver(true);
+    setNumberOfRoundsUntilRightGuess(0);
   }
 
   function handlePlayAgain() {
@@ -64,12 +71,17 @@ export default function App() {
           {!!pickedNumber && !isGameOver && (
             <Game
               userPickedNumber={pickedNumber}
+              increaseRounds={increaseNumberOfRounds}
               onComputerRightGuess={finishGame}
             />
           )}
 
           {!!pickedNumber && isGameOver && (
-            <GameOver onStartNewGameClick={handlePlayAgain} />
+            <GameOver
+              onStartNewGameClick={handlePlayAgain}
+              numberOfRounds={numberOfRoundsUntilRightGuess}
+              pickedNumber={pickedNumber}
+            />
           )}
         </SafeAreaView>
       </ImageBackground>
