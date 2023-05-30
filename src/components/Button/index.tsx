@@ -1,4 +1,4 @@
-import { Pressable, Text } from "react-native";
+import { Pressable, Text, View } from "react-native";
 import styles from "./styles";
 
 type ButtonProps = {
@@ -7,8 +7,14 @@ type ButtonProps = {
 
 export default function Button({ title }: ButtonProps) {
   return (
-    <Pressable style={styles.container}>
-      <Text>{title}</Text>
-    </Pressable>
+    <View style={styles.wrapper}>
+      <Pressable
+        style={({ pressed }) =>
+          pressed ? [styles.container, styles.pressed] : styles.container
+        }
+      >
+        <Text style={styles.title}>{title}</Text>
+      </Pressable>
+    </View>
   );
 }
