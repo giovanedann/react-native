@@ -111,7 +111,7 @@ export default function Game({
         </View>
       </Card>
 
-      <View>
+      <View style={styles.listContainer}>
         <FlatList
           data={rounds}
           renderItem={(round) => (
