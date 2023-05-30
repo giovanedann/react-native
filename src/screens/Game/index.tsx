@@ -4,7 +4,7 @@ import styles from "./styles";
 export default function Game() {
   return (
     <View style={styles.container}>
-      <Text>Opponent's guess</Text>
+      <Text style={styles.title}>Opponent's guess</Text>
 
       <Text>Guess</Text>
 
