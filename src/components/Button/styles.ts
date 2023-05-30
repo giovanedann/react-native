@@ -1,4 +1,5 @@
 import { StyleSheet } from "react-native";
+import { Colors } from "../../styles/colors";
 
 const styles = StyleSheet.create({
   wrapper: {
@@ -9,7 +10,7 @@ const styles = StyleSheet.create({
 
   container: {
     alignContent: "center",
-    backgroundColor: "#72063c",
+    backgroundColor: Colors.primary500,
     paddingVertical: 8,
     paddingHorizontal: 16,
     elevation: 2,
@@ -21,7 +22,7 @@ const styles = StyleSheet.create({
   },
 
   pressed: {
-    backgroundColor: "#a71d62",
+    backgroundColor: Colors.primary300,
     opacity: 0.75,
   },
 });

@@ -4,12 +4,16 @@ import { useState } from "react";
 
 import GameStart from "./src/screens/GameStart";
 import Game from "./src/screens/Game";
+import { Colors } from "./src/styles/colors";
 
 export default function App() {
   const [pickedNumber, setPickedNumber] = useState<number>(0);
 
   return (
-    <LinearGradient colors={["#4e0329", "#ddb52f"]} style={styles.root}>
+    <LinearGradient
+      colors={[Colors.primary550, Colors.accent500]}
+      style={styles.root}
+    >
       <ImageBackground
         source={require("./assets/background.png")}
         resizeMode="cover"
