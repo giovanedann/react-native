@@ -1,5 +1,18 @@
-import { Text } from "react-native";
+import { Image, View } from "react-native";
+import Title from "../../components/Title";
+import styles from "./styles";
 
 export default function GameOver() {
-  return <Text>I guessed your number!!</Text>;
+  return (
+    <View style={styles.container}>
+      <Title text="GAME OVER!" />
+
+      <View style={styles.imageContainer}>
+        <Image
+          source={require("../../../assets/success.png")}
+          style={styles.image}
+        />
+      </View>
+    </View>
+  );
 }
