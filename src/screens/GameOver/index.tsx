@@ -3,7 +3,11 @@ import Title from "../../components/Title";
 import styles from "./styles";
 import Button from "../../components/Button";
 
-export default function GameOver() {
+type GameOverProps = {
+  onStartNewGameClick: () => void;
+};
+
+export default function GameOver({ onStartNewGameClick }: GameOverProps) {
   return (
     <View style={styles.container}>
       <Title text="GAME OVER!" />
@@ -20,7 +24,7 @@ export default function GameOver() {
         guess the number <Text style={styles.summaryHighlight}>Y</Text>.
       </Text>
 
-      <Button title="Start new game" onPress={() => {}} />
+      <Button title="Start new game" onPress={onStartNewGameClick} />
     </View>
   );
 }

@@ -37,6 +37,11 @@ export default function App() {
     setIsGameOver(true);
   }
 
+  function handlePlayAgain() {
+    setPickedNumber(0);
+    setIsGameOver(true);
+  }
+
   return (
     <LinearGradient
       colors={[Colors.primary550, Colors.accent500]}
@@ -63,7 +68,9 @@ export default function App() {
             />
           )}
 
-          {!!pickedNumber && isGameOver && <GameOver />}
+          {!!pickedNumber && isGameOver && (
+            <GameOver onStartNewGameClick={handlePlayAgain} />
+          )}
         </SafeAreaView>
       </ImageBackground>
     </LinearGradient>
