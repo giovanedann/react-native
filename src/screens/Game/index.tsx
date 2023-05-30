@@ -5,6 +5,8 @@ import { useEffect, useState } from "react";
 import generateRandomNumberBetween from "../../utils/generateRandomNumberBetween";
 import GuessedNumber from "../../components/GuessedNumber";
 import Button from "../../components/Button";
+import Card from "../../components/Card";
+import InstructionText from "../../components/InstructionText";
 
 type GameProps = {
   userPickedNumber: number;
@@ -61,13 +63,20 @@ export default function Game({
 
       <GuessedNumber number={currentComputerGuess} />
 
-      <View>
-        <Text>Higher or lower?</Text>
-        <View>
-          <Button title="Lower" onPress={() => guessNewNumber("lower")} />
-          <Button title="Higher" onPress={() => guessNewNumber("higher")} />
+      <Card>
+        <InstructionText
+          text="Higher or lower?"
+          style={styles.customInstructionText}
+        />
+        <View style={styles.buttonsContainer}>
+          <View style={styles.buttonContainer}>
+            <Button title="Lower" onPress={() => guessNewNumber("lower")} />
+          </View>
+          <View style={styles.buttonContainer}>
+            <Button title="Higher" onPress={() => guessNewNumber("higher")} />
+          </View>
         </View>
-      </View>
+      </Card>
 
       <View>
         <Text>Log rounds</Text>
