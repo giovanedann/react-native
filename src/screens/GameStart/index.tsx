@@ -4,6 +4,7 @@ import Button from "../../components/Button";
 import { useState } from "react";
 import Title from "../../components/Title";
 import Card from "../../components/Card";
+import InstructionText from "../../components/InstructionText";
 
 type GameStartProps = {
   onConfirmNumber: (number: number) => void;
@@ -38,7 +39,7 @@ export default function GameStart({ onConfirmNumber }: GameStartProps) {
     <View style={styles.wrapper}>
       <Title text="Guess my number!" />
       <Card>
-        <Text style={styles.instruction}>Enter a number between 1 and 99!</Text>
+        <InstructionText text="Enter a number between 1 and 99!" />
         <TextInput
           style={styles.textInput}
           maxLength={2}

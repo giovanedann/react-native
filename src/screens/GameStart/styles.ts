@@ -24,12 +24,6 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.25,
   },
 
-  instruction: {
-    color: Colors.accent500,
-    fontSize: 20,
-    textAlign: "center",
-  },
-
   textInput: {
     height: 50,
     width: 50,
