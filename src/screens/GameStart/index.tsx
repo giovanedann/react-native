@@ -12,8 +12,15 @@ export default function GameStart() {
         autoCapitalize="none"
         autoCorrect={false}
       />
-      <Button title="Lower" />
-      <Button title="Higher" />
+      <View style={styles.buttonsContainer}>
+        <View style={styles.buttonContainer}>
+          <Button title="Lower" />
+        </View>
+
+        <View style={styles.buttonContainer}>
+          <Button title="Higher" />
+        </View>
+      </View>
     </View>
   );
 }
