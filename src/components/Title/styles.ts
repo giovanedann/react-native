@@ -5,10 +5,10 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 18,
     fontWeight: "bold",
-    color: Colors.accent500,
+    color: "#fff",
     textAlign: "center",
     borderWidth: 2,
-    borderColor: Colors.accent500,
+    borderColor: "#fff",
     padding: 16,
   },
 });
