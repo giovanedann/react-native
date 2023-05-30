@@ -1,10 +1,11 @@
 import { Text, View } from "react-native";
 import styles from "./styles";
+import Title from "../../components/Title";
 
 export default function Game() {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Opponent's guess</Text>
+      <Title text="Opponent's guess" />
 
       <Text>Guess</Text>
 
