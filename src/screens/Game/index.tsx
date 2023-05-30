@@ -1,5 +1,20 @@
-import { Text } from "react-native";
+import { Text, View } from "react-native";
+import styles from "./styles";
 
 export default function Game() {
-  return <Text>Game Screen</Text>;
+  return (
+    <View style={styles.container}>
+      <Text>Opponent's guess</Text>
+
+      <Text>Guess</Text>
+
+      <View>
+        <Text>Higher or lower?</Text>
+      </View>
+
+      <View>
+        <Text>Log rounds</Text>
+      </View>
+    </View>
+  );
 }

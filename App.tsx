@@ -1,4 +1,4 @@
-import { StyleSheet, ImageBackground } from "react-native";
+import { StyleSheet, ImageBackground, SafeAreaView } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { useState } from "react";
 
@@ -16,13 +16,15 @@ export default function App() {
         style={styles.root}
         imageStyle={styles.backgroundImage}
       >
-        {!pickedNumber && (
-          <GameStart
-            onConfirmNumber={(value: number) => setPickedNumber(value)}
-          />
-        )}
+        <SafeAreaView style={styles.root}>
+          {!pickedNumber && (
+            <GameStart
+              onConfirmNumber={(value: number) => setPickedNumber(value)}
+            />
+          )}
 
-        {!!pickedNumber && <Game />}
+          {!!pickedNumber && <Game />}
+        </SafeAreaView>
       </ImageBackground>
     </LinearGradient>
   );
