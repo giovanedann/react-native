@@ -3,7 +3,11 @@ import styles from "./styles";
 import Button from "../../components/Button";
 import { useState } from "react";
 
-export default function GameStart() {
+type GameStartProps = {
+  onConfirmNumber: (number: number) => void;
+};
+
+export default function GameStart({ onConfirmNumber }: GameStartProps) {
   const [enteredNumber, setEnteredNumber] = useState<string>("");
 
   function onConfirm() {
@@ -18,7 +22,10 @@ export default function GameStart() {
         "Number must be an integer number between 1 and 99",
         [{ text: "Understood!", style: "destructive", onPress: onReset }]
       );
+      return;
     }
+
+    onConfirmNumber(convertedEnteredNumber);
   }
 
   function onReset() {

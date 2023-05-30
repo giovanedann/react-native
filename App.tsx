@@ -1,8 +1,13 @@
 import { StyleSheet, ImageBackground } from "react-native";
-import GameStart from "./src/screens/GameStart";
 import { LinearGradient } from "expo-linear-gradient";
+import { useState } from "react";
+
+import GameStart from "./src/screens/GameStart";
+import Game from "./src/screens/Game";
 
 export default function App() {
+  const [pickedNumber, setPickedNumber] = useState<number>(0);
+
   return (
     <LinearGradient colors={["#4e0329", "#ddb52f"]} style={styles.root}>
       <ImageBackground
@@ -11,7 +16,13 @@ export default function App() {
         style={styles.root}
         imageStyle={styles.backgroundImage}
       >
-        <GameStart />
+        {!pickedNumber && (
+          <GameStart
+            onConfirmNumber={(value: number) => setPickedNumber(value)}
+          />
+        )}
+
+        {!!pickedNumber && <Game />}
       </ImageBackground>
     </LinearGradient>
   );
