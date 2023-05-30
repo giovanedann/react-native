@@ -27,7 +27,7 @@ export default function App() {
             />
           )}
 
-          {!!pickedNumber && <Game />}
+          {!!pickedNumber && <Game userPickedNumber={pickedNumber} />}
         </SafeAreaView>
       </ImageBackground>
     </LinearGradient>
