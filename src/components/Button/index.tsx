@@ -1,12 +1,14 @@
 import { Pressable, Text, View } from "react-native";
 import styles from "./styles";
+import { ReactNode } from "react";
 
 type ButtonProps = {
-  title: string;
+  title?: string;
   onPress: () => void;
+  icon?: ReactNode;
 };
 
-export default function Button({ title, onPress }: ButtonProps) {
+export default function Button({ title, onPress, icon }: ButtonProps) {
   return (
     <View style={styles.wrapper}>
       <Pressable
@@ -15,7 +17,8 @@ export default function Button({ title, onPress }: ButtonProps) {
           pressed ? [styles.container, styles.pressed] : styles.container
         }
       >
-        <Text style={styles.title}>{title}</Text>
+        {title && <Text style={styles.title}>{title}</Text>}
+        {icon && icon}
       </Pressable>
     </View>
   );

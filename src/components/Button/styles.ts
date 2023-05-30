@@ -9,11 +9,14 @@ const styles = StyleSheet.create({
   },
 
   container: {
-    alignContent: "center",
     backgroundColor: Colors.primary500,
     paddingVertical: 8,
     paddingHorizontal: 16,
     elevation: 2,
+    flexDirection: "row",
+    gap: 8,
+    alignItems: "center",
+    justifyContent: "center",
   },
 
   title: {

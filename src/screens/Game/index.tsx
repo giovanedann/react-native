@@ -1,8 +1,12 @@
 import { Alert, Text, View } from "react-native";
-import styles from "./styles";
-import Title from "../../components/Title";
 import { useEffect, useState } from "react";
+import Ionicons from "@expo/vector-icons/Ionicons";
+
 import generateRandomNumberBetween from "../../utils/generateRandomNumberBetween";
+
+import styles from "./styles";
+
+import Title from "../../components/Title";
 import GuessedNumber from "../../components/GuessedNumber";
 import Button from "../../components/Button";
 import Card from "../../components/Card";
@@ -70,10 +74,16 @@ export default function Game({
         />
         <View style={styles.buttonsContainer}>
           <View style={styles.buttonContainer}>
-            <Button title="Lower" onPress={() => guessNewNumber("lower")} />
+            <Button
+              icon={<Ionicons name="md-remove" size={24} color="#fff" />}
+              onPress={() => guessNewNumber("lower")}
+            />
           </View>
           <View style={styles.buttonContainer}>
-            <Button title="Higher" onPress={() => guessNewNumber("higher")} />
+            <Button
+              icon={<Ionicons name="md-add" size={24} color="#fff" />}
+              onPress={() => guessNewNumber("higher")}
+            />
           </View>
         </View>
       </Card>
