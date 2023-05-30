@@ -8,15 +8,19 @@ import Button from "../../components/Button";
 
 type GameProps = {
   userPickedNumber: number;
+  onComputerRightGuess: () => void;
 };
 
 let minBoundary = 1;
 let maxBoundary = 100;
 
-export default function Game({ userPickedNumber }: GameProps) {
+export default function Game({
+  userPickedNumber,
+  onComputerRightGuess,
+}: GameProps) {
   const initialComputerGuess = generateRandomNumberBetween(
-    minBoundary,
-    maxBoundary,
+    1,
+    100,
     userPickedNumber
   );
 
@@ -44,6 +48,12 @@ export default function Game({ userPickedNumber }: GameProps) {
       generateRandomNumberBetween(minBoundary, maxBoundary, prev)
     );
   }
+
+  useEffect(() => {
+    if (userPickedNumber === currentComputerGuess) {
+      onComputerRightGuess();
+    }
+  }, [currentComputerGuess, userPickedNumber, onComputerRightGuess]);
 
   return (
     <View style={styles.container}>

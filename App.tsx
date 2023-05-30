@@ -5,9 +5,20 @@ import { useState } from "react";
 import GameStart from "./src/screens/GameStart";
 import Game from "./src/screens/Game";
 import { Colors } from "./src/styles/colors";
+import GameOver from "./src/screens/GameOver";
 
 export default function App() {
   const [pickedNumber, setPickedNumber] = useState<number>(0);
+  const [isGameOver, setIsGameOver] = useState<boolean>(true);
+
+  function handleConfirmNumber(value: number) {
+    setPickedNumber(value);
+    setIsGameOver(false);
+  }
+
+  function finishGame() {
+    setIsGameOver(true);
+  }
 
   return (
     <LinearGradient
@@ -21,13 +32,20 @@ export default function App() {
         imageStyle={styles.backgroundImage}
       >
         <SafeAreaView style={styles.root}>
-          {!pickedNumber && (
+          {!pickedNumber && isGameOver && (
             <GameStart
-              onConfirmNumber={(value: number) => setPickedNumber(value)}
+              onConfirmNumber={(value: number) => handleConfirmNumber(value)}
             />
           )}
 
-          {!!pickedNumber && <Game userPickedNumber={pickedNumber} />}
+          {!!pickedNumber && !isGameOver && (
+            <Game
+              userPickedNumber={pickedNumber}
+              onComputerRightGuess={finishGame}
+            />
+          )}
+
+          {!!pickedNumber && isGameOver && <GameOver />}
         </SafeAreaView>
       </ImageBackground>
     </LinearGradient>
